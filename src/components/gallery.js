@@ -9,18 +9,17 @@ const query = graphql`
         node {
           _id
           title
-          drawing {
+          image {
             asset {
               fluid {
                 ...GatsbySanityImageFluid
               }
             }
           }
-          description
-          slug {
-            current
+          galleries {
+            title
+            description
           }
-          publishedAt
         }
       }
     }
@@ -35,8 +34,8 @@ const Gallery = () => {
   }
   return (
     <div>
-      {data.allSanityDrawing.edges.map(({ node: item }) => (
-        <Image drawingItem={item} key={item._id} />
+      {data.allSanityDrawing.edges.map(({ node: drawingItem }) => (
+        <Image drawingItem={drawingItem} key={drawingItem._id} />
       ))}
     </div>
   )

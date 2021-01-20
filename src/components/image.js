@@ -3,11 +3,11 @@ import PropTypes from "prop-types"
 import Img from "gatsby-image"
 
 const Image = ({ drawingItem }) => {
-  if (!drawingItem?.drawing?.asset?.fluid) {
+  if (!drawingItem?.image?.asset?.fluid) {
     return <div>Picture not found</div>
   }
 
-  return <Img fluid={drawingItem.drawing.asset.fluid} />
+  return <Img fluid={drawingItem.image.asset.fluid} />
 }
 
 Image.propTypes = {
