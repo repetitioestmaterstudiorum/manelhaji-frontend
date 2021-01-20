@@ -1,5 +1,6 @@
 import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
+import Image from "./image"
 
 const query = graphql`
   {
@@ -33,13 +34,11 @@ const Gallery = () => {
     return <div>Gallery not found</div>
   }
   return (
-    <ul>
-      {data.allSanityDrawing.edges.map(({ node: drawing }) => (
-        <li key={drawing._id}>
-          <h3>{drawing.title}</h3>
-        </li>
+    <div>
+      {data.allSanityDrawing.edges.map(({ node: item }) => (
+        <Image drawingItem={item} key={item._id} />
       ))}
-    </ul>
+    </div>
   )
 }
 
