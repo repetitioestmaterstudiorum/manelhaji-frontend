@@ -1,4 +1,11 @@
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV}`,
+})
+
 module.exports = {
+  flags: {
+    PARALLEL_SOURCING: false,
+  },
   siteMetadata: {
     title: `Manel Haji`,
     description: `Manel Haji is an artist and engineer with a passion for drawing.`,
@@ -18,14 +25,16 @@ module.exports = {
     {
       resolve: "gatsby-source-sanity",
       options: {
-        projectId: "lni41ttk",
-        dataset: "production",
+        projectId: process.env.SANITY_PROJECT_ID,
+        dataset: process.env.SANITY_PROJECT_DATASET,
+        token: process.env.SANITY_TOKEN,
+        watchMode: true,
       },
     },
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `manel-haji`,
+        name: `manelhaji`,
         short_name: `mh`,
         start_url: `/`,
         background_color: `#663399`,
