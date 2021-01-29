@@ -3,7 +3,7 @@ import { useStaticQuery, graphql } from "gatsby"
 import Image from "./image"
 
 const query = graphql`
-  {
+  query allDrawings {
     allSanityDrawing {
       edges {
         node {
@@ -16,6 +16,7 @@ const query = graphql`
               }
             }
           }
+          description
           galleries {
             title
             description
