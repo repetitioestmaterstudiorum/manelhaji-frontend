@@ -2,21 +2,21 @@ import React from "react"
 import PropTypes from "prop-types"
 import Img from "gatsby-image"
 
-const Image = ({ drawingItem }) => {
-  if (!drawingItem?.image?.asset?.fluid) {
+const Image = ({ drawing }) => {
+  if (!drawing?.image?.asset?.fluid) {
     return <div>Picture not found</div>
   }
 
   return (
     <Img
-      fluid={drawingItem.image.asset.fluid}
-      alt={drawingItem.shortDescription || ""}
+      fluid={drawing.image.asset.fluid}
+      alt={drawing.shortDescription || ""}
     />
   )
 }
 
 Image.propTypes = {
-  drawingItem: PropTypes.object,
+  drawing: PropTypes.object,
 }
 
 export default Image
