@@ -57,7 +57,6 @@ const ulStyle = {
   paddingInlineStart: 0,
 }
 const generalLiStyle = {
-  display: "flex",
   fontSize: "1.2em",
   padding: "0 5px",
 }

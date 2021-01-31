@@ -1,5 +1,4 @@
 import React from "react"
-import { Link } from "gatsby"
 import SimpleReactLightbox from "simple-react-lightbox"
 
 import Layout from "../components/layout"
@@ -13,7 +12,6 @@ const IndexPage = () => (
     <SimpleReactLightbox>
       <Gallery />
     </SimpleReactLightbox>
-    <Link to="/page-2/">Go to page 2</Link> <br />
   </Layout>
 )
 

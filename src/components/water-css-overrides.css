@@ -1,0 +1,38 @@
+/* overrides the official way */
+:root {
+  --links: pink;
+}
+
+/* overrides the unoficcial way */
+body {
+  max-width: none;
+  overflow-y: scroll;
+}
+
+h1 {
+  font-size: 1.9em;
+}
+h2 {
+  font-size: 1.5em;
+  text-align: center;
+}
+
+[aria-current="page"],
+a:hover {
+  display: inline-block;
+  border-bottom: 2px solid pink;
+  margin-bottom: 0;
+}
+a {
+  margin-bottom: 2px;
+  margin-left: 10px;
+  text-decoration: none !important;
+}
+h1 > a {
+  border-bottom: none !important;
+}
+
+footer {
+  border-top: none;
+  text-align: center;
+}

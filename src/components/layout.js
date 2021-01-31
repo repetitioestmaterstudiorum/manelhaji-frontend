@@ -4,6 +4,7 @@ import { useStaticQuery, graphql } from "gatsby"
 
 import Header from "./header"
 import "./dark.min.css"
+import "./water-css-overrides.css"
 
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
@@ -18,18 +19,17 @@ const Layout = ({ children }) => {
 
   return (
     <>
-      <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
+      <Header siteTitle={data.site.siteMetadata?.title || ""} />
       <div
         style={{
-          margin: `0 auto`,
+          margin: "0 auto",
           maxWidth: 960,
-          padding: `0 1.0875rem 1.45rem`,
         }}
       >
         <main>{children}</main>
         <footer
           style={{
-            marginTop: `2rem`,
+            marginTop: "1rem",
           }}
         >
           © {new Date().getFullYear()} manelhaji.com

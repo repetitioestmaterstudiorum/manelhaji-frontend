@@ -2,19 +2,22 @@ import { Link } from "gatsby"
 import PropTypes from "prop-types"
 import React from "react"
 
+const flexLvl1 = {
+  margin: `0 auto`,
+  maxWidth: 900,
+  display: "flex",
+  justifyContent: "space-between",
+  alignItems: "center",
+}
+const flexLvl2 = {
+  display: "flex",
+  alignItems: "center",
+}
+
+// link styles in water-css-overrides.css
 const Header = ({ siteTitle }) => (
-  <header
-    style={{
-      marginBottom: `1.45rem`,
-    }}
-  >
-    <div
-      style={{
-        margin: `0 auto`,
-        maxWidth: 960,
-        padding: `1.45rem 1.0875rem`,
-      }}
-    >
+  <header style={flexLvl1}>
+    <div style={flexLvl2}>
       <h1 style={{ margin: 0 }}>
         <Link
           to="/"
@@ -26,6 +29,11 @@ const Header = ({ siteTitle }) => (
           {siteTitle}
         </Link>
       </h1>
+    </div>
+    <div style={flexLvl2}>
+      <Link to="/">Home</Link>
+      <Link to="/draw/">Draw</Link>
+      <Link to="/contact/">Contact</Link>
     </div>
   </header>
 )
