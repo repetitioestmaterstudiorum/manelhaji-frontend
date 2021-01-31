@@ -1,12 +1,22 @@
-import React from "react"
+import React, { useState } from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import { SRLWrapper } from "simple-react-lightbox"
 
 import Image from "./image"
 
+const allTags = graphql`
+  query allTags {
+    allSanityDrawings {
+      nodes {
+        tags
+      }
+    }
+  }
+`
+
 const query = graphql`
   query danymicDrawings {
-    allSanityDrawings(filter: { tags: { in: ["flower"] } }) {
+    allSanityDrawings {
       edges {
         node {
           _id
@@ -18,7 +28,7 @@ const query = graphql`
               }
             }
           }
-          alt
+          shortDescription
           tags
         }
       }
@@ -28,7 +38,7 @@ const query = graphql`
 
 const galleryOptions = {
   settings: {
-    overlayColor: "rgb(20 36 34)",
+    overlayColor: "rgb(19 19 19 / 95%)",
     autoplaySpeed: 4000,
     slideTransitionSpeed: 0.2,
   },
@@ -45,6 +55,8 @@ const galleryOptions = {
 }
 
 function Gallery() {
+  const [selectedTags, setSelectedTags] = useState()
+
   const data = useStaticQuery(query)
   if (!data?.allSanityDrawings?.edges) {
     return <div>Gallery empty</div>

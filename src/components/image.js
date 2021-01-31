@@ -7,7 +7,12 @@ const Image = ({ drawingItem }) => {
     return <div>Picture not found</div>
   }
 
-  return <Img fluid={drawingItem.image.asset.fluid} alt={drawingItem.alt} />
+  return (
+    <Img
+      fluid={drawingItem.image.asset.fluid}
+      alt={drawingItem.shortDescription || ""}
+    />
+  )
 }
 
 Image.propTypes = {

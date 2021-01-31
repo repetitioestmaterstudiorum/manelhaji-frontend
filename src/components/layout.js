@@ -3,7 +3,7 @@ import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
 
 import Header from "./header"
-import "./layout.css"
+import "./dark.min.css"
 
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
@@ -32,7 +32,7 @@ const Layout = ({ children }) => {
             marginTop: `2rem`,
           }}
         >
-          © {new Date().getFullYear()}, manelhaji.com
+          © {new Date().getFullYear()} manelhaji.com
         </footer>
       </div>
     </>
