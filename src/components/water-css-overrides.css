@@ -1,12 +1,14 @@
 /* overrides the official way */
 :root {
   --links: pink;
+  --text-muted: #aeaeae;
 }
 
 /* overrides the unoficcial way */
 body {
   max-width: none;
   overflow-y: scroll;
+  margin-bottom: 0;
 }
 
 h1 {
@@ -17,19 +19,17 @@ h2 {
   text-align: center;
 }
 
-[aria-current="page"],
-a:hover {
+.menu > [aria-current="page"],
+.menu > a:hover {
   display: inline-block;
   border-bottom: 2px solid pink;
   margin-bottom: 0;
 }
-a {
+.menu > a {
   margin-bottom: 2px;
-  margin-left: 10px;
+  margin-left: 0.5em;
   text-decoration: none !important;
-}
-h1 > a {
-  border-bottom: none !important;
+  font-size: 1.15em;
 }
 
 footer {

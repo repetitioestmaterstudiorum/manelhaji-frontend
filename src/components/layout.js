@@ -1,8 +1,9 @@
 import React from "react"
 import PropTypes from "prop-types"
-import { useStaticQuery, graphql } from "gatsby"
+import { useStaticQuery, graphql, Link } from "gatsby"
 
 import Header from "./header"
+import Menu from "./menu"
 import "./dark.min.css"
 import "./water-css-overrides.css"
 
@@ -29,10 +30,17 @@ const Layout = ({ children }) => {
         <main>{children}</main>
         <footer
           style={{
-            marginTop: "1rem",
+            marginTop: "1em",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
           }}
         >
-          © {new Date().getFullYear()} manelhaji.com
+          <Menu />
+          <p>
+            © {new Date().getFullYear()} - manelhaji.com -{" "}
+            <Link to="/imprint">Imprint</Link>
+          </p>
         </footer>
       </div>
     </>
