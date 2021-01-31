@@ -5,8 +5,8 @@ import { SRLWrapper } from "simple-react-lightbox"
 import Image from "./image"
 
 const query = graphql`
-  query allDrawings {
-    allSanityDrawing {
+  query danymicDrawings {
+    allSanityDrawings(filter: { tags: { in: ["flower"] } }) {
       edges {
         node {
           _id
@@ -18,28 +18,43 @@ const query = graphql`
               }
             }
           }
-          description
-          galleries {
-            title
-            description
-          }
+          alt
+          tags
         }
       }
     }
   }
 `
 
-const Gallery = () => {
+const galleryOptions = {
+  settings: {
+    overlayColor: "rgb(20 36 34)",
+    autoplaySpeed: 4000,
+    slideTransitionSpeed: 0.2,
+  },
+  buttons: {
+    showDownloadButton: false,
+    showThumbnailsButton: false,
+  },
+  caption: {
+    captionColor: "#ccc",
+    captionContainerPadding: "0 0",
+    captionAlignment: "center",
+    captionFontWeight: "300",
+  },
+}
+
+function Gallery() {
   const data = useStaticQuery(query)
-  if (!data?.allSanityDrawing?.edges) {
+  if (!data?.allSanityDrawings?.edges) {
     return <div>Gallery empty</div>
   }
 
   return (
     <div>
-      <p>hi there</p>
-      <SRLWrapper>
-        {data.allSanityDrawing.edges.map(({ node: drawingItem }) => (
+      <p>some tag menu to come here</p>
+      <SRLWrapper options={galleryOptions}>
+        {data.allSanityDrawings.edges.map(({ node: drawingItem }) => (
           <Image drawingItem={drawingItem} key={drawingItem._id} />
         ))}
       </SRLWrapper>
