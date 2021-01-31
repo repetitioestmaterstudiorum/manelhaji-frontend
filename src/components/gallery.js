@@ -1,5 +1,7 @@
 import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
+import { SRLWrapper } from "simple-react-lightbox"
+
 import Image from "./image"
 
 const query = graphql`
@@ -29,15 +31,18 @@ const query = graphql`
 
 const Gallery = () => {
   const data = useStaticQuery(query)
-
   if (!data?.allSanityDrawing?.edges) {
-    return <div>Gallery not found</div>
+    return <div>Gallery empty</div>
   }
+
   return (
     <div>
-      {data.allSanityDrawing.edges.map(({ node: drawingItem }) => (
-        <Image drawingItem={drawingItem} key={drawingItem._id} />
-      ))}
+      <p>hi there</p>
+      <SRLWrapper>
+        {data.allSanityDrawing.edges.map(({ node: drawingItem }) => (
+          <Image drawingItem={drawingItem} key={drawingItem._id} />
+        ))}
+      </SRLWrapper>
     </div>
   )
 }

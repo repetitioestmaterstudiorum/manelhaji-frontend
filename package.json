@@ -1,9 +1,9 @@
 {
-  "name": "gatsby-starter-default",
+  "name": "mh-fe-gatsby",
   "private": true,
-  "description": "A simple starter to get up and developing quickly with Gatsby",
+  "description": "manelhaji.com Gatsby frontend",
   "version": "0.1.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "author": "@repetitioestmaterstudiorum",
   "dependencies": {
     "gatsby": "^2.31.1",
     "gatsby-image": "^2.9.0",
@@ -17,7 +17,8 @@
     "prop-types": "^15.7.2",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
-    "react-helmet": "^6.1.0"
+    "react-helmet": "^6.1.0",
+    "simple-react-lightbox": "^3.5.5"
   },
   "devDependencies": {
     "prettier": "2.2.1"
@@ -25,7 +26,7 @@
   "keywords": [
     "gatsby"
   ],
-  "license": "0BSD",
+  "license": "GPL-3.0",
   "scripts": {
     "build": "gatsby build",
     "develop": "gatsby develop",
@@ -33,7 +34,7 @@
     "start": "npm run develop",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
-    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
