@@ -5,6 +5,7 @@ require("dotenv").config({
 module.exports = {
   flags: {
     PARALLEL_SOURCING: false,
+    DEV_SSR: false,
   },
   siteMetadata: {
     title: `Manel Haji`,
