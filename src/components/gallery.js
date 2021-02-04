@@ -47,6 +47,30 @@ const galleryOptions = {
   },
 }
 
+const galleryFlexContainer = {
+  listStyle: "none",
+  display: "flex",
+  flexWrap: "wrap",
+  // jostifyContent: "space-between",
+  // alignContent: "stretch",
+  marginBlockStart: 0,
+  marginInlineStart: 0,
+  paddingInlineStart: 0,
+}
+const galleryFlexItem = {
+  height: "30vh",
+  width: "30vh",
+  flexGrow: 1,
+  // minWidth: "100%",
+  // minHeight: "100%",
+}
+const imgStyle = {
+  maxHeight: "100%",
+  minWidth: "100%",
+  objectFit: "cover",
+  verticalAlign: "middle",
+}
+
 const ulStyle = {
   display: "flex",
   flexWrap: "wrap",
@@ -56,19 +80,20 @@ const ulStyle = {
   marginInlineStart: 0,
   paddingInlineStart: 0,
 }
-const generalLiStyle = {
+const generalButtonStyle = {
   fontSize: "1.2em",
   padding: "0 5px",
+  backgroundColor: "#ffffff00",
 }
-const activeLiStyle = {
+const activeStyle = {
   fontWeight: 400,
 }
-const inactiveLiStyle = {
+const inactiveStyle = {
   fontWeight: 100,
   color: "#dcdbdb",
 }
-const activeLiStyles = Object.assign({}, generalLiStyle, activeLiStyle)
-const inactiveLiStyles = Object.assign({}, generalLiStyle, inactiveLiStyle)
+const activeButtonStyle = Object.assign({}, generalButtonStyle, activeStyle)
+const inactiveButtonStyle = Object.assign({}, generalButtonStyle, inactiveStyle)
 
 function Gallery() {
   const [selectedTags, setSelectedTags] = useState([])
@@ -105,29 +130,35 @@ function Gallery() {
     <div>
       <ul style={ulStyle}>
         {selectedTags.map(t => (
-          <li
-            value={t.tag}
-            key={t.index}
-            style={t.active ? activeLiStyles : inactiveLiStyles}
-            onClick={() => toggleActive(t.index)}
-          >
-            #{t.tag}
+          <li key={t.index}>
+            <button
+              value={t.tag}
+              style={t.active ? activeButtonStyle : inactiveButtonStyle}
+              onClick={() => toggleActive(t.index)}
+              onKeyDown={() => toggleActive(t.index)}
+            >
+              #{t.tag}
+            </button>
           </li>
         ))}
       </ul>
       <SRLWrapper options={galleryOptions}>
-        {data.allSanityDrawings.edges
-          .filter(e =>
-            e.node?.tags?.some(t =>
-              selectedTags
-                ?.filter(sT => sT.active)
-                .map(sT => sT.tag)
-                .includes(t)
+        <ul style={galleryFlexContainer}>
+          {data.allSanityDrawings.edges
+            .filter(e =>
+              e.node?.tags?.some(t =>
+                selectedTags
+                  ?.filter(sT => sT.active)
+                  .map(sT => sT.tag)
+                  .includes(t)
+              )
             )
-          )
-          .map(({ node: drawing }) => (
-            <Image drawing={drawing} key={drawing._id} />
-          ))}
+            .map(({ node: drawing }) => (
+              <li key={drawing._id} style={galleryFlexItem}>
+                <Image drawing={drawing} style={imgStyle} />
+              </li>
+            ))}
+        </ul>
       </SRLWrapper>
     </div>
   )

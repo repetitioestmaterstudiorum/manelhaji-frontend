@@ -8,7 +8,7 @@ const menuStyle = {
 
 export default function Menu() {
   return (
-    <div class="menu" style={menuStyle}>
+    <div className="menu" style={menuStyle}>
       <Link to="/">Home</Link>
       <Link to="/draw/">Draw</Link>
       <Link to="/contact/">Contact</Link>

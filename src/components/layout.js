@@ -39,7 +39,7 @@ const Layout = ({ children }) => {
           <Menu />
           <p>
             © {new Date().getFullYear()} - manelhaji.com -{" "}
-            <Link to="/imprint">Imprint</Link>
+            <Link to="/site-notice">Site Notice</Link>
           </p>
         </footer>
       </div>
