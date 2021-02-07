@@ -5,7 +5,7 @@ import React from "react"
 import Menu from "./menu"
 
 const headerStyle = {
-  margin: `0 auto`,
+  margin: "0 auto",
   maxWidth: 900,
   display: "flex",
   justifyContent: "space-between",

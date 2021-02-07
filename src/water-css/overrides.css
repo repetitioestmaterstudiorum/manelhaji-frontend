@@ -13,10 +13,13 @@ body {
 
 h1 {
   font-size: 1.9em;
+  font-weight: 300;
 }
 h2 {
   font-size: 1.5em;
   text-align: center;
+  font-weight: 100;
+  padding: 7px 0 14px 0;
 }
 
 .menu > [aria-current="page"],
@@ -30,11 +33,7 @@ h2 {
   margin-left: 0.5em;
   text-decoration: none !important;
   font-size: 1.15em;
-}
-
-footer {
-  border-top: none;
-  text-align: center;
+  font-weight: 300;
 }
 
 button:focus {

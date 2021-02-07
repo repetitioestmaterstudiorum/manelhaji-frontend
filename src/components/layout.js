@@ -4,8 +4,8 @@ import { useStaticQuery, graphql, Link } from "gatsby"
 
 import Header from "./header"
 import Menu from "./menu"
-import "./dark.min.css"
-import "./water-css-overrides.css"
+import "../water-css/dark.min.css"
+import "../water-css/overrides.css"
 
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
@@ -34,6 +34,8 @@ const Layout = ({ children }) => {
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
+            borderTop: "none",
+            textAlign: "center",
           }}
         >
           <Menu />
