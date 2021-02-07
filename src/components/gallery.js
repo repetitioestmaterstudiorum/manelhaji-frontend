@@ -48,30 +48,23 @@ const galleryOptions = {
 }
 
 const galleryFlexContainer = {
-  listStyle: "none",
   display: "flex",
   flexWrap: "wrap",
-  // jostifyContent: "space-between",
-  // alignContent: "stretch",
+  // flexDirection: "row",
+  listStyle: "none",
   marginBlockStart: 0,
   marginInlineStart: 0,
   paddingInlineStart: 0,
 }
 const galleryFlexItem = {
-  height: "30vh",
-  width: "30vh",
-  flexGrow: 1,
-  // minWidth: "100%",
-  // minHeight: "100%",
-}
-const imgStyle = {
-  maxHeight: "100%",
-  minWidth: "100%",
-  objectFit: "cover",
-  verticalAlign: "middle",
+  display: "flex",
+  height: "50vh",
+  width: "40vh",
+  margin: "0.5rem",
+  flexGrow: "1",
 }
 
-const ulStyle = {
+const tagUlist = {
   display: "flex",
   flexWrap: "wrap",
   justifyContent: "space-evenly",
@@ -80,20 +73,20 @@ const ulStyle = {
   marginInlineStart: 0,
   paddingInlineStart: 0,
 }
-const generalButtonStyle = {
+const tagButton = {
   fontSize: "1.2em",
   padding: "0 5px",
   backgroundColor: "#ffffff00",
 }
-const activeStyle = {
+const tagActiveButton = {
   fontWeight: 400,
 }
-const inactiveStyle = {
+const tagInactiveButton = {
   fontWeight: 100,
   color: "#dcdbdb",
 }
-const activeButtonStyle = Object.assign({}, generalButtonStyle, activeStyle)
-const inactiveButtonStyle = Object.assign({}, generalButtonStyle, inactiveStyle)
+const tagActive = Object.assign({}, tagButton, tagActiveButton)
+const tagInactive = Object.assign({}, tagButton, tagInactiveButton)
 
 function Gallery() {
   const [selectedTags, setSelectedTags] = useState([])
@@ -128,12 +121,12 @@ function Gallery() {
   }
   return (
     <div>
-      <ul style={ulStyle}>
+      <ul style={tagUlist}>
         {selectedTags.map(t => (
           <li key={t.index}>
             <button
               value={t.tag}
-              style={t.active ? activeButtonStyle : inactiveButtonStyle}
+              style={t.active ? tagActive : tagInactive}
               onClick={() => toggleActive(t.index)}
               onKeyDown={() => toggleActive(t.index)}
             >
@@ -155,7 +148,7 @@ function Gallery() {
             )
             .map(({ node: drawing }) => (
               <li key={drawing._id} style={galleryFlexItem}>
-                <Image drawing={drawing} style={imgStyle} />
+                <Image drawing={drawing} />
               </li>
             ))}
         </ul>

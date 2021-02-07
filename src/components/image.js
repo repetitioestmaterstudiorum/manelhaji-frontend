@@ -2,6 +2,11 @@ import React from "react"
 import PropTypes from "prop-types"
 import Img from "gatsby-image"
 
+const img = {
+  maxHeight: "100%",
+  minWidth: "100%",
+}
+
 const Image = ({ drawing }) => {
   if (!drawing?.image?.asset?.fluid) {
     return <div>Picture not found</div>
@@ -11,6 +16,7 @@ const Image = ({ drawing }) => {
     <Img
       fluid={drawing.image.asset.fluid}
       alt={drawing.shortDescription || ""}
+      style={img}
     />
   )
 }
