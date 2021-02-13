@@ -94,7 +94,7 @@ const resetBtn = {
   fontWeight: "200",
   padding: "8px 14px",
   marginRight: "14px",
-  backgroundColor: "#3f3f3f",
+  backgroundColor: "rgb(63 63 63 / 50%)",
 }
 
 function Gallery() {

@@ -8,7 +8,7 @@ import Gallery from "../components/gallery"
 const IndexPage = () => (
   <Layout>
     <SEO title="Home" />
-    <h2>- Drawings -</h2>
+    <h2>Drawings</h2>
     <SimpleReactLightbox>
       <Gallery />
     </SimpleReactLightbox>

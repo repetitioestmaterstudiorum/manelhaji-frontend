@@ -12,11 +12,16 @@ const headerStyle = {
   alignItems: "center",
 }
 
+const logoText = {
+  margin: 0,
+  fontSize: "min(8vw, 40px)",
+}
+
 // link styles in water-css-overrides.css
 const Header = ({ siteTitle }) => (
   <header style={headerStyle}>
     <div>
-      <h1 style={{ margin: 0 }}>
+      <h1 style={logoText}>
         <Link
           to="/"
           style={{

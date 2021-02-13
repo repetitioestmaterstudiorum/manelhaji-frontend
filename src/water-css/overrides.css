@@ -1,6 +1,6 @@
 /* overrides the official way */
 :root {
-  --links: pink;
+  --links: #abcaf2;
   --text-muted: #aeaeae;
 }
 
@@ -25,15 +25,17 @@ h2 {
 .menu > [aria-current="page"],
 .menu > a:hover {
   display: inline-block;
-  border-bottom: 2px solid pink;
+  border-bottom: min(0.5vw, 1.5px) solid #abcaf2;
   margin-bottom: 0;
 }
 .menu > a {
-  margin-bottom: 2px;
-  margin-left: 0.5em;
+  margin-bottom: min(0.5vw, 1.5px);
+  margin-left: 3vw;
   text-decoration: none !important;
-  font-size: 1.15em;
   font-weight: 300;
+}
+.menu > a:nth-child(1) {
+  margin-left: 0;
 }
 
 button:focus {

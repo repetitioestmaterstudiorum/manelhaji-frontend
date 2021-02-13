@@ -6,7 +6,7 @@ import SEO from "../components/seo"
 const Draw = () => (
   <Layout>
     <SEO title="Draw" />
-    <h2>- Draw -</h2>
+    <h2>Draw!</h2>
     <p>magic here</p>
   </Layout>
 )
