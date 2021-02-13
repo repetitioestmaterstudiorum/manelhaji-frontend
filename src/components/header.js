@@ -5,8 +5,8 @@ import React from "react"
 import Menu from "./menu"
 
 const headerStyle = {
+  maxWidth: "900px",
   margin: "0 auto",
-  maxWidth: 900,
   display: "flex",
   justifyContent: "space-between",
   alignItems: "center",
@@ -14,21 +14,16 @@ const headerStyle = {
 
 const logoText = {
   margin: 0,
+  color: "#ececec",
   fontSize: "min(8vw, 40px)",
+  textDecoration: "none",
 }
 
-// link styles in water-css-overrides.css
 const Header = ({ siteTitle }) => (
   <header style={headerStyle}>
     <div>
-      <h1 style={logoText}>
-        <Link
-          to="/"
-          style={{
-            color: `white`,
-            textDecoration: `none`,
-          }}
-        >
+      <h1>
+        <Link style={logoText} to="/">
           {siteTitle}
         </Link>
       </h1>

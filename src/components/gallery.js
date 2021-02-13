@@ -80,6 +80,7 @@ const tagButton = {
 }
 const tagActiveButton = {
   fontWeight: 300,
+  color: "#e9e9e9",
 }
 const tagInactiveButton = {
   fontWeight: 100,
