@@ -50,7 +50,6 @@ const galleryOptions = {
 const galleryFlexContainer = {
   display: "flex",
   flexWrap: "wrap",
-  // flexDirection: "row",
   listStyle: "none",
   marginBlockStart: 0,
   marginInlineStart: 0,
@@ -64,11 +63,12 @@ const galleryFlexItem = {
   flexGrow: "1",
 }
 
-const tagUlist = {
+const tagList = {
   display: "flex",
   flexWrap: "wrap",
   justifyContent: "space-evenly",
   listStyle: "none",
+  lineHeight: "40px",
   marginBlockStart: 0,
   marginInlineStart: 0,
   paddingInlineStart: 0,
@@ -83,13 +83,22 @@ const tagActiveButton = {
 }
 const tagInactiveButton = {
   fontWeight: 100,
+  padding: "0px 6px",
   color: "#dcdbdb",
 }
 const tagActive = Object.assign({}, tagButton, tagActiveButton)
 const tagInactive = Object.assign({}, tagButton, tagInactiveButton)
 
+const resetBtn = {
+  textTransform: "uppercase",
+  fontWeight: "200",
+  padding: "8px 14px",
+  marginRight: "14px",
+  backgroundColor: "#3f3f3f",
+}
+
 function Gallery() {
-  const [selectedTags, setSelectedTags] = useState([])
+  const [tags, setTags] = useState([])
 
   const data = useStaticQuery(query)
 
@@ -98,37 +107,73 @@ function Gallery() {
     []
   )
   const uniqueTags = [...new Set(allTags)]
+
   useState(() => {
-    setSelectedTags(
+    setTags(
       uniqueTags.map((uT, index) => {
-        return { tag: uT, active: true, index }
+        return { tag: uT, active: true, selected: false, index }
       })
     )
   }, [uniqueTags])
 
-  function toggleActive(tagIndex) {
-    const negateActivity = ({ tag, active, index }) => {
-      return { tag, active: !active, index }
+  function toggleTags(tagIndex) {
+    const negateSelected = ({ tag, active, selected, index }) => {
+      return { tag, active, selected: !selected, index }
     }
-    const newSelectedTags = selectedTags.map(sT =>
-      sT.index === tagIndex ? negateActivity(sT) : sT
+    const negateActive = ({ tag, active, selected, index }) => {
+      return { tag, active: !active, selected, index }
+    }
+    const setSelectedToActive = ({ tag, active, selected, index }) => {
+      return { tag, active: selected, selected, index }
+    }
+    const newSelectedTags = tags.map(t =>
+      t.index === tagIndex ? negateSelected(t) : t
     )
-    setSelectedTags(newSelectedTags)
+    const nmbOfSelectedTags = newSelectedTags.filter(t => t.selected).length
+    const nmbOfTags = tags.length
+    const allOrNoTagsSelected =
+      nmbOfSelectedTags === 0 || nmbOfSelectedTags === nmbOfTags ? true : false
+    if (allOrNoTagsSelected) {
+      setTags(newSelectedTags.map(t => (!t.active ? negateActive(t) : t)))
+    } else {
+      setTags(newSelectedTags.map(t => setSelectedToActive(t)))
+    }
+  }
+
+  function resetTags() {
+    setTags(
+      tags.map(({ tag, active, selected, index }) => ({
+        tag,
+        active: true,
+        selected: false,
+        index,
+      }))
+    )
   }
 
   if (!data?.allSanityDrawings?.edges || !data?.allSanityDrawings?.nodes) {
     return <div>Gallery empty</div>
   }
+
   return (
     <div>
-      <ul style={tagUlist}>
-        {selectedTags.map(t => (
+      <ul style={tagList}>
+        <li>
+          <button
+            style={resetBtn}
+            onClick={() => resetTags()}
+            onKeyDown={() => resetTags()}
+          >
+            reset
+          </button>
+        </li>
+        {tags.map(t => (
           <li key={t.index}>
             <button
               value={t.tag}
               style={t.active ? tagActive : tagInactive}
-              onClick={() => toggleActive(t.index)}
-              onKeyDown={() => toggleActive(t.index)}
+              onClick={() => toggleTags(t.index)}
+              onKeyDown={() => toggleTags(t.index)}
             >
               #{t.tag}
             </button>
@@ -140,9 +185,9 @@ function Gallery() {
           {data.allSanityDrawings.edges
             .filter(e =>
               e.node?.tags?.some(t =>
-                selectedTags
-                  ?.filter(sT => sT.active)
-                  .map(sT => sT.tag)
+                tags
+                  ?.filter(t => t.active)
+                  .map(t => t.tag)
                   .includes(t)
               )
             )
