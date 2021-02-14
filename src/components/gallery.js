@@ -61,6 +61,7 @@ const galleryFlexItem = {
   width: "40vh",
   margin: "0.5rem",
   flexGrow: "1",
+  cursor: "pointer",
 }
 
 const tagList = {

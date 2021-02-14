@@ -1,6 +1,7 @@
 import React from "react"
 import PropTypes from "prop-types"
 import { useStaticQuery, graphql, Link } from "gatsby"
+import ScrollToTop from "react-scroll-up"
 
 import Header from "./header"
 import Menu from "./menu"
@@ -28,6 +29,11 @@ const Layout = ({ children }) => {
         }}
       >
         <main>{children}</main>
+        <ScrollToTop style={{ bottom: "44px", right: "13px" }} showUnder={180}>
+          <button style={{ padding: "8px 10px", backgroundColor: "#545454d9" }}>
+            ▲ up
+          </button>
+        </ScrollToTop>
         <footer
           style={{
             marginTop: "1em",
