@@ -29,14 +29,18 @@ const Layout = ({ children }) => {
         }}
       >
         <main>{children}</main>
-        <ScrollToTop style={{ bottom: "44px", right: "13px" }} showUnder={180}>
-          <button style={{ padding: "8px 10px", backgroundColor: "#545454d9" }}>
-            ▲ up
-          </button>
+        <ScrollToTop style={{ bottom: "43px", right: "6px" }} showUnder={180}>
+          <button>▲ up</button>
         </ScrollToTop>
+        <hr
+          style={{
+            width: "40%",
+            marginTop: "40px",
+            borderTop: "1px dashed lightgrey",
+          }}
+        />
         <footer
           style={{
-            marginTop: "1em",
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
