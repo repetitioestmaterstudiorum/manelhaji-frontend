@@ -97,6 +97,7 @@ const resetBtn = {
   padding: "8px 14px",
   marginRight: "14px",
   backgroundColor: "rgb(63 63 63 / 50%)",
+  fontSize: "0.9em",
 }
 
 function Gallery() {
@@ -142,6 +143,8 @@ function Gallery() {
     }
   }
 
+  const resetPossible = tags.filter(t => t.selected === t.active).length > 0
+
   function resetTags() {
     setTags(
       tags.map(({ tag, active, selected, index }) => ({
@@ -165,8 +168,9 @@ function Gallery() {
             style={resetBtn}
             onClick={() => resetTags()}
             onKeyDown={() => resetTags()}
+            disabled={resetPossible ? false : true}
           >
-            reset
+            &#8855; reset
           </button>
         </li>
         {tags.map(t => (
