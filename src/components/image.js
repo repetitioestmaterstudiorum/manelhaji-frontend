@@ -8,7 +8,6 @@ const img = {
 }
 
 const Image = ({ imageData }) => {
-  console.log("imageData", imageData)
   if (!imageData?.image?.asset?.fluid) {
     return <div>Picture not found</div>
   }
