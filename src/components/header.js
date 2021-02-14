@@ -16,7 +16,6 @@ const logoText = {
   margin: 0,
   color: "#ececec",
   fontSize: "min(8vw, 40px)",
-  textDecoration: "none",
 }
 
 const Header = ({ siteTitle }) => (

@@ -199,7 +199,7 @@ function Gallery() {
             )
             .map(({ node: drawing }) => (
               <li key={drawing._id} style={galleryFlexItem}>
-                <Image drawing={drawing} />
+                <Image imageData={drawing} />
               </li>
             ))}
         </ul>

@@ -7,15 +7,16 @@ const img = {
   minWidth: "100%",
 }
 
-const Image = ({ drawing }) => {
-  if (!drawing?.image?.asset?.fluid) {
+const Image = ({ imageData }) => {
+  console.log("imageData", imageData)
+  if (!imageData?.image?.asset?.fluid) {
     return <div>Picture not found</div>
   }
 
   return (
     <Img
-      fluid={drawing.image.asset.fluid}
-      alt={drawing.shortDescription || ""}
+      fluid={imageData.image.asset.fluid}
+      alt={imageData.shortDescription || imageData.alt || ""}
       style={img}
     />
   )
