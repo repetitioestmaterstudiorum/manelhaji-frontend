@@ -104,13 +104,13 @@ function Gallery() {
   }
 
   const resetPossible = useMemo(
-    () => tags.filter(t => t.selected === t.active).length > 0,
+    () => tags?.filter(t => t.selected === t.active).length > 0,
     [tags]
   )
 
   function resetTags() {
     setTags(
-      tags.map(({ tag, active, selected, index }) => ({
+      tags?.map(({ tag, active, selected, index }) => ({
         tag,
         active: true,
         selected: false,
@@ -136,7 +136,7 @@ function Gallery() {
             &#8855; reset
           </button>
         </li>
-        {tags.map(t => (
+        {tags?.map(t => (
           <li key={t.index}>
             <button
               value={t.tag}
