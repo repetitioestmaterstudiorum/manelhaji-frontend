@@ -60,7 +60,7 @@ function Draw() {
   }
 
   const isDrawingInProgress =
-    JSON.parse(drawing)?.lines?.length > 0 ? false : true
+    drawing && JSON.parse(drawing)?.lines?.length > 0 ? false : true
 
   return (
     <Layout>
