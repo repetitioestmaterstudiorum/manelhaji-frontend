@@ -29,6 +29,7 @@ const drawingsAndTagsQuery = graphql`
 `
 
 export const PersistantDataProvider = ({ children }) => {
+  // drawings data and tags
   const [tags, setTags] = useState([])
 
   const data = useStaticQuery(drawingsAndTagsQuery)
@@ -56,8 +57,13 @@ export const PersistantDataProvider = ({ children }) => {
     }
   }, [data])
 
+  // drawing (lines) data
+  const [drawing, setDrawing] = useState(null)
+
   return (
-    <PersistantDataContext.Provider value={{ data, tags, setTags }}>
+    <PersistantDataContext.Provider
+      value={{ data, tags, setTags, drawing, setDrawing }}
+    >
       {children}
     </PersistantDataContext.Provider>
   )

@@ -1,12 +1,13 @@
-import React, { useState } from "react"
+import React, { useState, useContext } from "react"
 import CanvasDraw from "react-canvas-draw"
 
+import { PersistantDataContext } from "../context/persistantDataContext"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 
 function Draw() {
-  const [canvas, setCanvas] = useState(null)
-  const [drawing, setDrawing] = useState(null)
+  const { drawing, setDrawing } = useContext(PersistantDataContext)
+  const [canvas, setCanvas] = useState({})
 
   function printDiv() {
     const divContents = document.querySelector(
