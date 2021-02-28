@@ -6,11 +6,11 @@ import Layout from "../components/layout"
 import SEO from "../components/seo"
 
 function Draw() {
-  const { drawing, setDrawing } = useContext(PersistantDataContext)
   const [canvas, setCanvas] = useState({})
+  const { drawing, setDrawing } = useContext(PersistantDataContext)
 
-  function printDiv() {
-    const divContents = document.querySelector(
+  function print() {
+    const finalCanvas = document.querySelector(
       "#canvasDraw > div > canvas:nth-child(2)"
     )
     const dateAndTimeString = new Date().toLocaleDateString("en-US", {
@@ -19,14 +19,14 @@ function Draw() {
       month: "long",
       day: "numeric",
     })
-    const img = "<img src = '" + divContents.toDataURL() + "'/>"
+    const img = "<img src = '" + finalCanvas.toDataURL() + "'/>"
     const newWindow = window.open("", "My Drawing")
     newWindow.document.write("<html>")
     newWindow.document.write(
       `<html>
         <body >
           <strong>My drawing from ${dateAndTimeString}</strong>
-          <p>Made on ${window.location.href}</p>
+          <p>Made on ${window.location.hostname}</p>
           <br>`
     )
     newWindow.document.write(img)
@@ -37,12 +37,30 @@ function Draw() {
     }, 100)
   }
 
+  function downloadDrawing() {
+    const finalCanvas = document.querySelector(
+      "#canvasDraw > div > canvas:nth-child(2)"
+    )
+
+    const ctx = finalCanvas.getContext("2d")
+    ctx.globalCompositeOperation = "destination-over"
+    ctx.fillStyle = "white"
+    ctx.fillRect(0, 0, finalCanvas.width, finalCanvas.height)
+
+    const img = finalCanvas.toDataURL("image/png")
+
+    const a = document.createElement("a")
+    a.href = img
+    a.download = `drawing-from-${window.location.hostname}.png`
+    a.click()
+  }
+
   function saveDrawing() {
-    // localStorage.setItem("savedDrawing", canvas.getSaveData())
     setDrawing(canvas.getSaveData())
   }
 
-  const isDrawingInProgress = JSON.parse(drawing)?.lines?.length > 0
+  const isDrawingInProgress =
+    JSON.parse(drawing)?.lines?.length > 0 ? false : true
 
   return (
     <Layout>
@@ -59,7 +77,7 @@ function Draw() {
           onClick={() => {
             canvas.undo()
           }}
-          disabled={isDrawingInProgress ? false : true}
+          disabled={isDrawingInProgress}
         >
           Undo
         </button>
@@ -68,17 +86,26 @@ function Draw() {
             canvas.clear()
             saveDrawing()
           }}
-          disabled={isDrawingInProgress ? false : true}
+          disabled={isDrawingInProgress}
         >
           Clear
         </button>
         <button
           onClick={() => {
-            printDiv()
+            downloadDrawing()
           }}
-          disabled={isDrawingInProgress ? false : true}
+          disabled={isDrawingInProgress}
+          download
         >
-          Print!
+          Download
+        </button>
+        <button
+          onClick={() => {
+            print()
+          }}
+          disabled={isDrawingInProgress}
+        >
+          Print
         </button>
       </div>
       <div id="canvasDraw">
@@ -94,7 +121,6 @@ function Draw() {
           lazyRadius={null}
           hideInterface={true} // no dot as cursor
           onChange={() => saveDrawing()}
-          // saveData={localStorage.getItem("savedDrawing")}
           saveData={drawing}
           style={{ margin: "0 auto", cursor: "crosshair" }}
         />
