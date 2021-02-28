@@ -1,33 +1,9 @@
-import React, { useState } from "react"
-import { useStaticQuery, graphql } from "gatsby"
+import React, { useMemo, useContext } from "react"
+
+import { PersistantDataContext } from "../context/persistantDataContext"
 import { SRLWrapper } from "simple-react-lightbox"
 
 import Image from "./image"
-
-const query = graphql`
-  query drawingsAndTags {
-    allSanityDrawings {
-      edges {
-        node {
-          _id
-          title
-          image {
-            asset {
-              fluid {
-                ...GatsbySanityImageFluid
-              }
-            }
-          }
-          shortDescription
-          tags
-        }
-      }
-      nodes {
-        tags
-      }
-    }
-  }
-`
 
 const galleryOptions = {
   settings: {
@@ -101,23 +77,7 @@ const resetBtn = {
 }
 
 function Gallery() {
-  const [tags, setTags] = useState([])
-
-  const data = useStaticQuery(query)
-
-  const allTags = data?.allSanityDrawings?.nodes?.reduce(
-    (acc, cur) => acc.concat(cur.tags),
-    []
-  )
-  const uniqueTags = [...new Set(allTags)]
-
-  useState(() => {
-    setTags(
-      uniqueTags.map((uT, index) => {
-        return { tag: uT, active: true, selected: false, index }
-      })
-    )
-  }, [uniqueTags])
+  const { data, tags, setTags } = useContext(PersistantDataContext)
 
   function toggleTags(tagIndex) {
     const negateSelected = ({ tag, active, selected, index }) => {
@@ -143,7 +103,10 @@ function Gallery() {
     }
   }
 
-  const resetPossible = tags.filter(t => t.selected === t.active).length > 0
+  const resetPossible = useMemo(
+    () => tags.filter(t => t.selected === t.active).length > 0,
+    [tags]
+  )
 
   function resetTags() {
     setTags(
