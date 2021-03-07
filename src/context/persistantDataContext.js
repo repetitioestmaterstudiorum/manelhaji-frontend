@@ -29,7 +29,7 @@ const drawingsAndTagsQuery = graphql`
 `
 
 export const PersistantDataProvider = ({ children }) => {
-  // drawings data and tags
+  // images (manel's drawings) data and tags state
   const [tags, setTags] = useState([])
 
   const data = useStaticQuery(drawingsAndTagsQuery)
@@ -38,9 +38,11 @@ export const PersistantDataProvider = ({ children }) => {
     if (window.location.pathname === "/") {
       getAndSetTags()
     } else {
+      console.info("image loading delayed by 1s")
       setTimeout(() => {
+        console.info("loading images now")
         getAndSetTags()
-      }, 500)
+      }, 1000)
     }
     function getAndSetTags() {
       const allTags = data?.allSanityDrawings?.nodes?.reduce(
@@ -57,7 +59,7 @@ export const PersistantDataProvider = ({ children }) => {
     }
   }, [data])
 
-  // drawing (lines) data
+  // drawing (lines) data in /draw
   const [drawing, setDrawing] = useState(null)
 
   return (
