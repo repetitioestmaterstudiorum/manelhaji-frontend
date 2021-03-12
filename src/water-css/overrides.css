@@ -41,6 +41,9 @@ button {
   background-color: rgba(63, 63, 63, 0.5);
   font-weight: 300;
 }
+button:focus {
+  box-shadow: none;
+}
 
 .menu > [aria-current="page"],
 .menu > a:hover {
@@ -55,8 +58,4 @@ button {
 }
 .menu > a:nth-child(1) {
   margin-left: 0;
-}
-
-button:focus {
-  box-shadow: none;
 }

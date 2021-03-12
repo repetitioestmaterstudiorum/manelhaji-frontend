@@ -61,10 +61,19 @@ export const PersistantDataProvider = ({ children }) => {
 
   // drawing (lines) data in /draw
   const [drawing, setDrawing] = useState(null)
+  const [brushSize, setBrushSize] = useState(1)
 
   return (
     <PersistantDataContext.Provider
-      value={{ data, tags, setTags, drawing, setDrawing }}
+      value={{
+        data,
+        tags,
+        setTags,
+        drawing,
+        setDrawing,
+        brushSize,
+        setBrushSize,
+      }}
     >
       {children}
     </PersistantDataContext.Provider>

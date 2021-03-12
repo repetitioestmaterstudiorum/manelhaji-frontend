@@ -7,7 +7,9 @@ import SEO from "../components/seo"
 
 function Draw() {
   const [canvas, setCanvas] = useState({})
-  const { drawing, setDrawing } = useContext(PersistantDataContext)
+  const { drawing, setDrawing, brushSize, setBrushSize } = useContext(
+    PersistantDataContext
+  )
 
   function print() {
     const finalCanvas = document.querySelector(
@@ -19,7 +21,7 @@ function Draw() {
       month: "long",
       day: "numeric",
     })
-    const img = "<img src = '" + finalCanvas.toDataURL() + "'/>"
+    const img = "<img src = '' + finalCanvas.toDataURL() + ''/>"
     const newWindow = window.open("", "My Drawing")
     newWindow.document.write("<html>")
     newWindow.document.write(
@@ -108,6 +110,41 @@ function Draw() {
           Print
         </button>
       </div>
+      <div
+        style={{
+          display: "flex",
+          marginBottom: "7px",
+          justifyContent: "center",
+        }}
+      >
+        <p style={{ margin: "0", paddingRight: "10px", lineHeight: "2rem" }}>
+          Brush size:
+        </p>
+        <button
+          onClick={() => {
+            setBrushSize(1)
+          }}
+          disabled={brushSize === 1}
+        >
+          small
+        </button>
+        <button
+          onClick={() => {
+            setBrushSize(2)
+          }}
+          disabled={brushSize === 2}
+        >
+          medium
+        </button>
+        <button
+          onClick={() => {
+            setBrushSize(3)
+          }}
+          disabled={brushSize === 3}
+        >
+          large
+        </button>
+      </div>
       <div id="canvasDraw">
         <CanvasDraw
           ref={canvasDraw => setCanvas(canvasDraw)}
@@ -116,7 +153,7 @@ function Draw() {
           canvasWidth={"94vmin"}
           canvasHeight={"60vh"}
           hideGrid={true}
-          brushRadius={1}
+          brushRadius={brushSize}
           brushColor={"#1e1e1e"}
           lazyRadius={null}
           hideInterface={true} // no dot as cursor
