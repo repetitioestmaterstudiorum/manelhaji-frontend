@@ -92,7 +92,7 @@ function Draw() {
         >
           Clear
         </button>
-        {/* <button
+        <button
           onClick={() => {
             downloadDrawing()
           }}
@@ -100,15 +100,15 @@ function Draw() {
           download
         >
           Download
-        </button> */}
-        <button
+        </button>
+        {/* <button
           onClick={() => {
             print()
           }}
           disabled={isDrawingInProgress}
         >
           Print
-        </button>
+        </button> */}
       </div>
       <div
         style={{
