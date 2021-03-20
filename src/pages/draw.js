@@ -21,7 +21,7 @@ function Draw() {
       month: "long",
       day: "numeric",
     })
-    const img = "<img src = '' + finalCanvas.toDataURL() + ''/>"
+    const img = "<img src = ''" + finalCanvas.toDataURL() + "''/>"
     const newWindow = window.open("", "My Drawing")
     newWindow.document.write("<html>")
     newWindow.document.write(
@@ -92,7 +92,7 @@ function Draw() {
         >
           Clear
         </button>
-        <button
+        {/* <button
           onClick={() => {
             downloadDrawing()
           }}
@@ -100,7 +100,7 @@ function Draw() {
           download
         >
           Download
-        </button>
+        </button> */}
         <button
           onClick={() => {
             print()
